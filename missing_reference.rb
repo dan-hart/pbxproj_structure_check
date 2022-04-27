@@ -44,11 +44,7 @@ class PbxStructure
 
     files_in_xcode_project = [""]
     main_group["children"].each do |child_id|
-      object = @pbx_objects[child_id]
-      filename = object["path"]
-      if not filename.nil?
-        files_in_xcode_project.append(filename)
-      end    
+      files_in_xcode_project.append(getFilePathsFrom(child_id))      
     end
 
     print files_in_xcode_project
