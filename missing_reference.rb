@@ -59,6 +59,7 @@ class PbxStructure
     main_group["children"].each do |child_id|
       object = @pbx_objects[child_id]
       filename = object["path"]
+      files_in_xcode_project.append(filename)
     end
 
     swiftFiles.each do |swiftFile|
