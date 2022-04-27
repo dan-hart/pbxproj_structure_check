@@ -53,7 +53,6 @@ class PbxStructure
     if @project_dir.nil?
       abort "\nnil project_dir"
     end
-    swiftFiles = Dir["#{project_dir}/**/*.swift"]
 
     files_in_xcode_project = [""]
     main_group["children"].each do |child_id|
@@ -66,6 +65,7 @@ class PbxStructure
 
     print files_in_xcode_project.length
 
+    swiftFiles = Dir["#{project_dir}/**/*.swift"]
     swiftFiles.each do |swiftFile|
         swiftFilename = File.basename(swiftFile) # SomeSwiftFile.swift
         if files_in_xcode_project.include?(swiftFilename)
