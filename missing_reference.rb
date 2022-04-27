@@ -61,6 +61,7 @@ class PbxStructure
 
     main_group["children"].each do |child_id|
       object = @pbx_objects[child_id]
+      filename = object["path"]
    end
   end
 end
