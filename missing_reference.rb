@@ -57,6 +57,7 @@ class PbxStructure
 
     swiftFiles.each do |swiftFile|
         print "\n" + swiftFile
+        swiftFilename = File.basename(path)
     end
 
     main_group["children"].each do |child_id|
