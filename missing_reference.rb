@@ -23,7 +23,10 @@ class PbxStructure
     
     filename = object["path"]
     if not filename.nil?
-      files_in_object.append(filename)
+      extension = File.extname(filename) # file extension ".swift" 
+      if extension == ".swift"
+        files_in_object.append(filename)
+      end
     end   
     
     if not object["children"].nil?
@@ -65,6 +68,8 @@ class PbxStructure
           print "\nFile '#{swiftFilename}' is not referenced in the Xcode project"
         end
     end
+
+    print "\n"
   end
 end
 
