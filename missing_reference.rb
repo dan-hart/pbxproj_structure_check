@@ -64,10 +64,7 @@ class PbxStructure
 
     swiftFiles.each do |swiftFile|
         swiftFilename = File.basename(swiftFile) # SomeSwiftFile.swift
-        print swiftFilename + "\n"
-        if array.include?(element) # preferred method
-            puts "Found!"
-        else
+        if not files_in_xcode_project.include?(swiftFilename)
             puts "Not found!"
         end
     end
