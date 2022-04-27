@@ -44,6 +44,7 @@ class PbxStructure
 
     files_in_xcode_project = []
     main_group["children"].each do |child_id|
+      child_paths = getFilePathsFrom(child_id)
       files_in_xcode_project.append(getFilePathsFrom(child_id))      
     end
 
