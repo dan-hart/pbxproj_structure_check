@@ -55,15 +55,17 @@ class PbxStructure
     end
     swiftFiles = Dir["#{project_dir}/**/*.swift"]
 
+    files_in_xcode_project = []
+    main_group["children"].each do |child_id|
+      object = @pbx_objects[child_id]
+      filename = object["path"]
+    end
+
     swiftFiles.each do |swiftFile|
         swiftFilename = File.basename(swiftFile) # SomeSwiftFile.swift
         print swiftFilename + "\n"
     end
 
-    main_group["children"].each do |child_id|
-      object = @pbx_objects[child_id]
-      filename = object["path"]
-   end
   end
 end
 
