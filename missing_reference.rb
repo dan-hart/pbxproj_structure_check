@@ -18,7 +18,7 @@ class PbxStructure
   end
   
   def getFilePathsFrom(object_id)
-    files_in_object = [""]
+    files_in_object = []
     object = @pbx_objects[object_id]
     
     filename = object["path"]
