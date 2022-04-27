@@ -21,28 +21,18 @@ class PbxStructure
     files_in_object = [""]
     object = @pbx_objects[object_id]
     
-    if object_location.empty?
-      object_description = "Object '#{object_id}' named '#{object["name"]}' at '/'"
-    else 
-      object_description = "Object '#{object_id}' named '#{object["name"]}' at '#{object_location}'"
-    end
+    filename = object["path"]
+    if not filename.nil?
+      files_in_object.append(filename)
+    end   
     
-    if not object["sourceTree"].eql?("<group>")
-      print "\n#{object_description} is not relative to <group> but to #{object["sourceTree"]}"
-    end
-    if object["path"].nil?
-      print "\n#{object_description} has no physical path"
-    end
-    if (not object["name"].nil?) and (not object["name"].eql?(object["path"]))
-      print "\n#{object_description} has name '#{object["name"]}' different from its real path '#{object["path"]}'"
-    end
-  
-    children_location = "#{object_location}/#{object["path"]}"
     if not object["children"].nil?
       object["children"].each do |child_id|
-        check_object(child_id, children_location)
+        files_in_object.append(getFilePathsFrom(child_id))
       end 
     end
+
+    return files_in_object
   end
   
   def check
