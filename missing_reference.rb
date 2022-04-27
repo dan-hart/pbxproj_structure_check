@@ -69,7 +69,7 @@ class PbxStructure
     swiftFiles.each do |swiftFile|
         swiftFilename = File.basename(swiftFile) # SomeSwiftFile.swift
         if files_in_xcode_project.include?(swiftFilename)
-          # no action
+          # file is referenced in xcode project, no worries
         else 
           # print "\nFile '#{swiftFilename}' is not referenced in the Xcode project"
         end
