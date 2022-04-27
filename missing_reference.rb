@@ -63,7 +63,7 @@ class PbxStructure
       end    
     end
 
-    print files_in_xcode_project.length
+    print files_in_xcode_project
 
     swiftFiles = Dir["#{project_dir}/**/*.swift"]
     swiftFiles.each do |swiftFile|
