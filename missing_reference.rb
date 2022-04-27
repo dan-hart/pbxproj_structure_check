@@ -17,10 +17,8 @@ class PbxStructure
     @pbx_objects = pbx_tree["objects"]
   end
   
-  def check_object(object_id, object_location)
-    if (not @ignored_ids.nil?) and (@ignored_ids.include?(object_id))
-      return
-    end
+  def getFilePathsFrom(object_id)
+    files_in_object = [""]
     object = @pbx_objects[object_id]
     
     if object_location.empty?
