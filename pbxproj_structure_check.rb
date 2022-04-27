@@ -31,13 +31,13 @@ class PbxStructure
     end
     
     if not object["sourceTree"].eql?("<group>")
-      abort "#{object_description} is not relative to <group> but to #{object["sourceTree"]}"
+      print "\n#{object_description} is not relative to <group> but to #{object["sourceTree"]}"
     end
     if object["path"].nil?
-      abort "#{object_description} has no physical path"
+      print "\n#{object_description} has no physical path"
     end
     if (not object["name"].nil?) and (not object["name"].eql?(object["path"]))
-      abort "#{object_description} has name '#{object["name"]}' different from its real path '#{object["path"]}'"
+      print "\n#{object_description} has name '#{object["name"]}' different from its real path '#{object["path"]}'"
     end
   
     children_location = "#{object_location}/#{object["path"]}"
