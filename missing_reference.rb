@@ -42,7 +42,7 @@ class PbxStructure
       abort "\nnil project_dir"
     end
 
-    files_in_xcode_project = [""]
+    files_in_xcode_project = []
     main_group["children"].each do |child_id|
       files_in_xcode_project.append(getFilePathsFrom(child_id))      
     end
