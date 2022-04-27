@@ -28,7 +28,10 @@ class PbxStructure
     
     if not object["children"].nil?
       object["children"].each do |child_id|
-        files_in_object.append(getFilePathsFrom(child_id))
+        child_paths = getFilePathsFrom(child_id)
+        child_paths.each do |child_path|
+          files_in_object.append(child_path)
+        end
       end 
     end
 
