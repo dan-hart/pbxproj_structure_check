@@ -1,11 +1,8 @@
 #
-#  pbxproj_structure_check.rb
-#  v.1.0.2
+#  missing_reference.rb
+#  v0.0.1
 #
-#  Copyright (c) 2014 Kamil Borzym
-#  Released under the MIT License
-#
-# Updated by Dan Hart (04/27/2022)
+# Dan Hart (04/27/2022)
 #
 
 require 'rubygems'
@@ -13,7 +10,7 @@ require 'json'
 
 class PbxStructure
 
-  attr_accessor :ignored_ids
+  attr_accessor :project_dir
 
   def initialize(pbx_tree)
     @pbx_tree = pbx_tree
@@ -53,9 +50,17 @@ class PbxStructure
   def check
     root_object = @pbx_objects[@pbx_tree["rootObject"]]
     main_group = @pbx_objects[root_object["mainGroup"]]
-  
+    if @project_dir.nil?
+      abort "\nnil project_dir"
+    end
+    swiftFiles = Dir["#{project_dir}/**/*.swift"]
+
+    swiftFiles.each do |swiftFile|
+        print "\n" + swiftFile
+    end
+
     main_group["children"].each do |child_id|
-      check_object(child_id, "")
+      object = @pbx_objects[child_id]
    end
   end
 end
@@ -63,7 +68,7 @@ end
 
 if __FILE__ == $0
   def usage
-    abort "ruby #{__FILE__} pbx_path [ignored_id:...]"
+    abort "ruby #{__FILE__} pbx_path [project_dir]"
   end
 
   pbx_path = ARGV[0]
@@ -79,7 +84,9 @@ if __FILE__ == $0
 
   pbx_structure = PbxStructure.new(pbx_tree)
   if not ARGV[1].nil?
-    pbx_structure.ignored_ids = ARGV[1].split(":")
+    pbx_structure.project_dir = ARGV[1] # Path to project directory
+    pbx_structure.check
+  else
+    abort "Missing project directory!"
    end
-  pbx_structure.check
 end
