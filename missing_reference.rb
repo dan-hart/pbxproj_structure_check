@@ -56,8 +56,8 @@ class PbxStructure
     swiftFiles = Dir["#{project_dir}/**/*.swift"]
 
     swiftFiles.each do |swiftFile|
-        print "\n" + swiftFile
         swiftFilename = File.basename(path) # SomeSwiftFile.swift
+        
     end
 
     main_group["children"].each do |child_id|
