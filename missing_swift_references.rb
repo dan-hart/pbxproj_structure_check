@@ -66,11 +66,9 @@ class PbxStructure
         if files_in_xcode_project.include?(swiftFilename)
           # file is referenced in xcode project, no worries
         else 
-          print "\nFile '#{swiftFilename}' is not referenced in the Xcode project"
+          print "File '#{swiftFilename}' has a missing or invalid reference in the Xcode Project.\n"
         end
     end
-
-    print "\n"
   end
 end
 
