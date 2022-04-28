@@ -1,6 +1,6 @@
 #
 #  missing_reference.rb
-#  v0.0.1
+#  v0.5.0
 #
 # Dan Hart (04/27/2022)
 #
@@ -10,6 +10,7 @@ require 'json'
 
 class PbxStructure
 
+  # Where the Swift files and subdirectories are located
   attr_accessor :project_dir
 
   def initialize(pbx_tree)
@@ -72,7 +73,6 @@ class PbxStructure
     print "\n"
   end
 end
-
 
 if __FILE__ == $0
   def usage
